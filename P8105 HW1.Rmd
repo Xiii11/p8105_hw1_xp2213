@@ -1,0 +1,19 @@
+---
+title: "Homework 1"
+output: github_document
+---
+
+```{r, echo=FALSE, message=FALSE}
+library(tidyverse)
+library(dplyr)
+```
+
+
+# Problem 1
+## Section 1 - Data import and description
+```{r, echo=FALSE, Message=FALSE}
+data("penguins", package = "palmerpenguins")
+```
+The "penguins" dataset has `r nrow(penguins)` rows and `r ncol(penguins)` columns.
+The important variables are: `r names(penguins)`.The mean flipper length `r mean(pull(penguins, flipper_length_mm), na.rm = TRUE)`
+mm.
