@@ -2,6 +2,11 @@
 title: "Homework 1"
 output: github_document
 ---
+Name: Xi Peng
+
+UNI: xp2213
+
+Date: 09.19.2024
 
 ```{r, echo=FALSE, message=FALSE}
 library(tidyverse)
@@ -30,6 +35,7 @@ The scatterplot has been saved as pdf format and named "Scatterplot_of_Flipper_L
 
 
 # Problem 2
+## Section 1 - Data frame
 ```{r, echo=FALSE, Message=FALSE}
 set.seed(1)
 problem2samp_df = tibble(
@@ -39,8 +45,41 @@ problem2samp_df = tibble(
     vec_factor = factor(sample(c("Level1", "Level2", "Level3"), 10, replace = TRUE))
 )
 ```
+Data frame was created.
+```{r echo=FALSE}
+problem2samp_df
+```
 
+## Section 2 - Mean
 
+```{r, echo=FALSE, Message=FALSE, warning=FALSE, results='hide'}
+mean(pull(problem2samp_df, random_sample), na.rm = TRUE)
+mean(pull(problem2samp_df, vec_logical), na.rm = TRUE)
+mean(pull(problem2samp_df, vec_char), na.rm = TRUE)
+mean(pull(problem2samp_df, vec_factor), na.rm = TRUE)
+```
+In this process, I was able to find means for random_sample and ver_logical, which are `r mean(pull(problem2samp_df, random_sample), na.rm = TRUE)` and `r mean(pull(problem2samp_df, vec_logical), na.rm = TRUE)`, respectively. However, there were warning messages for vec_char and vec_factor, indicating that these two variables are not numeric or logical, and thus returned to NA.
+
+## Section 3 - Using 'as.numeric'
+
+```{r, warning=FALSE}
+numeric_logical = as.numeric(pull(problem2samp_df, vec_logical))
+numeric_char = as.numeric(pull(problem2samp_df, vec_char))
+numeric_factor = as.numeric(pull(problem2samp_df, vec_factor))
+```
+By using 'as.numeric', the vec_logical and vec_factor were successfully converted to numeric values. However, there was warning message for vec_char, indicating that this variable does not represent numbers, and thus its values were converted to NAs.
+
+By checking each variables that were converted to numeric, I found that the values of numeric_logical are `r numeric_logical`, which consist only 1s and 0s. For numeric_factor, its values are `r numeric_factor`, which correspond to 2, 3, and 1. The variable numeric_char contains NAs.
+
+Retry calculating the mean:
+```{r, message=FALSE}
+mean(numeric_logical, na.rm = TRUE)
+mean(numeric_char, na.rm = TRUE)
+mean(numeric_factor, na.rm = TRUE)
+```
+By trying to calculate the means again, I could find the means for numeric_logical and numeric_factor, which are `r mean(numeric_logical, na.rm = TRUE)` and `r mean(numeric_factor, na.rm = TRUE)`, respectively.
+
+In conclusion, logical variables and factors variables can be converted to numeric or their underlying integer codes, allowing calculating the mean. While character variables are unable to be converted to numeric, the R could not assign numeric values to letters or words. Thus, it is unable to calculate mean for character variables.
 
 
 
