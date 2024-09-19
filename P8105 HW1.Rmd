@@ -6,14 +6,25 @@ output: github_document
 ```{r, echo=FALSE, message=FALSE}
 library(tidyverse)
 library(dplyr)
+library(ggplot2)
 ```
 
 
 # Problem 1
-## Section 1 - Data import and description
+## Section 1 - Data import
 ```{r, echo=FALSE, Message=FALSE}
 data("penguins", package = "palmerpenguins")
 ```
 The "penguins" dataset has `r nrow(penguins)` rows and `r ncol(penguins)` columns.
 The important variables are: `r names(penguins)`.The mean flipper length `r mean(pull(penguins, flipper_length_mm), na.rm = TRUE)`
 mm.
+
+## Section 2 - Scatterplot of Flipper length vs. Bill Length
+
+```{r, echo=FALSE, Message=FALSE}
+ggplot(penguins, aes(x=bill_length_mm, y=flipper_length_mm, color=species)) + geom_point(na.rm=TRUE)
+ggsave("Scatterplot_of_Flipper_Length_and_Bill_Length.pdf", height = 4, width = 6)
+```
+
+The scatterplot has been saved as pdf format and named "Scatterplot_of_Flipper_Length_and_Bill_Length.pdf".
+
