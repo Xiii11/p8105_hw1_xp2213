@@ -2,7 +2,7 @@
 title: "Homework 1"
 output: github_document
 ---
-Name: Xi Peng   UNI: xp2213    Date: 09.19.2024
+Name: Xi Peng   UNI: xp2213    Date: 09.21.2024
 
 ```{r, echo=FALSE, message=FALSE}
 
@@ -23,7 +23,7 @@ data("penguins", package = "palmerpenguins")
 ```
 
 The "penguins" dataset has `r nrow(penguins)` rows and `r ncol(penguins)` columns, containing demographic information of `r nrow(penguins)` penguins between `r min(pull(penguins, year))` and `r max(pull(penguins, year))`.
-The important variables are: `r names(penguins)`. Specifically, the dataset provides the demographic information about penguins, such as sex, year, bill depth and length, and flipper length and depth, and body mass. Also, island and species are also included. The mean flipper length `r mean(pull(penguins, flipper_length_mm), na.rm = TRUE)`
+The important variables are: `r names(penguins)`. Specifically, the dataset provides the demographic information about penguins, such as sex, year, bill depth and length, and flipper length, and body mass. Also, island and species are also included. The mean flipper length is `r mean(pull(penguins, flipper_length_mm), na.rm = TRUE)`
 mm.
 
 ```{r, echo=FALSE}
@@ -31,8 +31,6 @@ mm.
 NA_rows = penguins |> 
   select (species, island, bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g, sex, year) |> 
   filter(is.na(species) | is.na(island) | is.na(bill_length_mm) | is.na(bill_depth_mm) | is.na(flipper_length_mm) | is.na(body_mass_g) | is.na(sex) | is.na(year))
-
-NA_rows
 
 ```
 
@@ -44,17 +42,7 @@ penguins_df = drop_na(penguins)
 
 ```
 
-To further explore each variable in detail, there are 3 categories for variable "Island", which are: `r unique(pull(penguins,island))`. The species of sampled penguins are: `r unique(pull(penguins, species))`. 
-
-The minimum, maximum and mean for bill length are `r min(pull(penguins_df, bill_length_mm))` mm, `r max(pull(penguins_df, bill_length_mm))` mm, and `r mean(pull(penguins_df, bill_length_mm))`, respectively.
-
-The minimum, maximum and mean for bill depth are `r min(pull(penguins_df, bill_depth_mm))` mm, `r max(pull(penguins_df, bill_depth_mm))` mm, and `r mean(pull(penguins_df, bill_depth_mm))`, respectively.
-
-The minimum, maximum and mean for flipper length are `r min(pull(penguins_df, flipper_length_mm))` mm, `r max(pull(penguins_df, flipper_length_mm))` mm, and `r mean(pull(penguins_df, flipper_length_mm))`, respectively.
-
-The minimum, maximum and mean for flipper depth are `r min(pull(penguins_df, flipper_depth_mm))` mm, `r max(pull(penguins_df, flipper_depth_mm))` mm, and `r mean(pull(penguins_df, flipper_depth_mm))`, respectively.
-
-The minimum, maximum and mean for body mass are `r min(pull(penguins_df, body_mass_g))` mm, `r max(pull(penguins_df, body_mass_g))` mm, and `r mean(pull(penguins_df, body_mass_g))`, respectively.
+To further explore each variable in detail, there are 3 categories for variable "Island", which are: `r unique(pull(penguins,island))`. The species of sampled penguins are: `r unique(pull(penguins, species))`. The minimum, maximum and mean values for bill length are `r min(pull(penguins_df, bill_length_mm))` mm, `r max(pull(penguins_df, bill_length_mm))` mm, and `r mean(pull(penguins_df, bill_length_mm))`, respectively. The minimum, maximum and mean values for bill depth are `r min(pull(penguins_df, bill_depth_mm))` mm, `r max(pull(penguins_df, bill_depth_mm))` mm, and `r mean(pull(penguins_df, bill_depth_mm))`, respectively. The minimum and maximum values for flipper length are `r min(pull(penguins_df, flipper_length_mm))` mm and `r max(pull(penguins_df, flipper_length_mm))` mm, respectively. The minimum, maximum and mean values for body mass are `r min(pull(penguins_df, body_mass_g))` mm, `r max(pull(penguins_df, body_mass_g))` mm, and `r mean(pull(penguins_df, body_mass_g))`, respectively.
 
 
 ## Section 2 - Scatterplot of Flipper length vs. Bill Length
@@ -108,7 +96,7 @@ In this process, I was able to find means for random_sample and ver_logical, whi
 
 ## Section 3 - Using 'as.numeric'
 
-```{r, warning=FALSE}
+```{r, warning=FALSE, message=FALSE}
 
 numeric_logical = as.numeric(pull(problem2samp_df, vec_logical))
 numeric_char = as.numeric(pull(problem2samp_df, vec_char))
@@ -122,7 +110,7 @@ By checking each variables that were converted to numeric, I found that the valu
 
 Retry calculating the mean:
 
-```{r, message=FALSE}
+```{r, Message=FALSE, results='hide'}
 
 mean(numeric_logical, na.rm = TRUE)
 mean(numeric_char, na.rm = TRUE)
