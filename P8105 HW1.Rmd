@@ -88,7 +88,7 @@ problem2samp_df
 
 ## Section 2 - Initial attempt at calculating the mean of each variable in the created data frame
 
-```{r, echo=FALSE, Message=FALSE, warning=FALSE, results='hide'}
+```{r, Message=FALSE, warning=FALSE, results='hide'}
 
 mean(pull(problem2samp_df, random_sample), na.rm = TRUE)
 mean(pull(problem2samp_df, vec_logical), na.rm = TRUE)
@@ -127,7 +127,7 @@ mean(numeric_factor, na.rm = TRUE)
 
 By trying to calculate the means again, I could find the means for numeric_logical and numeric_factor, which are `r mean(numeric_logical, na.rm = TRUE)` and `r mean(numeric_factor, na.rm = TRUE)`, respectively.
 
-In conclusion, logical variables and factors variables can be converted to numeric or their underlying integer codes, allowing calculating the mean. While character variables are unable to be converted to numeric, the R could not assign numeric values to letters or words. Thus, it is unable to calculate mean for character variables.
+In conclusion, logical variables and factors variables can be converted to numeric or their underlying integer codes, allowing calculating the mean. While character variables were unable to be converted to numeric, the R could not assign numeric values to letters or words. This explains the issue I encountered during my initial attempt at calculating the means, that if a variable is not numeric or does not have a underlying integer codes, arithmetic operation cannot be performed on it. Thus, it was unable to calculate mean for character variables.
 
 
 
