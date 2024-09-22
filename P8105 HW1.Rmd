@@ -37,15 +37,14 @@ NA_rows = penguins |>
 Based on the inspection of missing values in the dataset, there are 11 penguins with missing values across differnt variables. Specifically, two penguins, one from Togersen Island and one from Biscoe Island, are missing all information. Regarding the variable "sex", 11 penguins are missing this value.
 
 
-
-Clear missing values for exploring the minimum, maximum, and mean values:
+Code for clearing missing values for exploring the minimum, maximum, and mean values:
 ```{r}
 
 penguins_df = drop_na(penguins)
 
 ```
 
-To further explore each variable in detail, there are 3 categories for variable "Island", which are: `r unique(pull(penguins,island))`. The species of sampled penguins are: `r unique(pull(penguins, species))`. The minimum, maximum and mean values for bill length are `r min(pull(penguins_df, bill_length_mm))` mm, `r max(pull(penguins_df, bill_length_mm))` mm, and `r mean(pull(penguins_df, bill_length_mm))`, respectively. The minimum, maximum and mean values for bill depth are `r min(pull(penguins_df, bill_depth_mm))` mm, `r max(pull(penguins_df, bill_depth_mm))` mm, and `r mean(pull(penguins_df, bill_depth_mm))`, respectively. The minimum and maximum values for flipper length are `r min(pull(penguins_df, flipper_length_mm))` mm and `r max(pull(penguins_df, flipper_length_mm))` mm, respectively. The minimum, maximum and mean values for body mass are `r min(pull(penguins_df, body_mass_g))` g, `r max(pull(penguins_df, body_mass_g))` g, and `r mean(pull(penguins_df, body_mass_g))`g, respectively.
+To further explore each variable in detail, there are 3 categories for variable "Island", which are: `r unique(pull(penguins,island))`. The species of sampled penguins are: `r unique(pull(penguins, species))`. After removing the missing values, the minimum, maximum and mean values for bill length are `r min(pull(penguins_df, bill_length_mm))` mm, `r max(pull(penguins_df, bill_length_mm))` mm, and `r mean(pull(penguins_df, bill_length_mm))`, respectively. The minimum, maximum and mean values for bill depth are `r min(pull(penguins_df, bill_depth_mm))` mm, `r max(pull(penguins_df, bill_depth_mm))` mm, and `r mean(pull(penguins_df, bill_depth_mm))`, respectively. The minimum and maximum values for flipper length are `r min(pull(penguins_df, flipper_length_mm))` mm and `r max(pull(penguins_df, flipper_length_mm))` mm, respectively. The minimum, maximum and mean values for body mass are `r min(pull(penguins_df, body_mass_g))` g, `r max(pull(penguins_df, body_mass_g))` g, and `r mean(pull(penguins_df, body_mass_g))`g, respectively.
 
 
 ## Section 2 - Scatterplot of Flipper length vs. Bill Length
@@ -58,6 +57,9 @@ ggsave("Scatterplot_of_Flipper_Length_and_Bill_Length.pdf", height = 4, width = 
 ```
 
 The scatterplot has been saved as pdf format and named "Scatterplot_of_Flipper_Length_and_Bill_Length.pdf".
+
+
+This scatterplot illustrates a clear separation among these three penguin species based on flipper length and bill length, with some overlap in the bill length between Chinstrap and Gentoo penguins. Gentoo penguins have the longest flippers. Chinstrap penguins have shorter flippers but similar bill length to Gentoo penguins. Adelie penguins have the shortest flippers and bills among these three species.
 
 
 # Problem 2
